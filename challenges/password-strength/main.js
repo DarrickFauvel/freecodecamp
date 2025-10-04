@@ -15,6 +15,7 @@ function checkStrength(password) {
 
   numOfRulesMet = hasRequiredLength(password) ? numOfRulesMet + 1 : numOfRulesMet
   numOfRulesMet = hasUppercaseAndLowercase(password) ? numOfRulesMet + 1 : numOfRulesMet
+  numOfRulesMet = hasAtLeastOneNumber(password) ? numOfRulesMet + 1 : numOfRulesMet
   return numOfRulesMet;
 }
 
@@ -29,4 +30,11 @@ function hasUppercaseAndLowercase(password) {
   return hasUppercase && hasLowercase
 }
 
-console.log(checkStrength('DarrickF'))
+function hasAtLeastOneNumber(password) {
+  // Check for any digit [0-9]
+  const hasNumber = /\d/.test(password)
+  return hasNumber
+}
+
+console.log(checkStrength('DarrickF23'))
+// console.log(hasAtLeastOneNumber('a'))
