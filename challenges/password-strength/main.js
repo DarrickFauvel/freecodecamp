@@ -1,15 +1,32 @@
+/**
+ * Check the strength of a given password string
+ * @param {string} password 
+ * @returns {boolean}
+ */
 function checkStrength(password) {
+  // Check if no password given
+  if (!password) return 0
+  
+  /**
+   * Represent the number of required rules met
+   * @type {number}
+   */
   let numOfRulesMet = 0
-  numOfRulesMet = isRequiredLength(password) ? numOfRulesMet + 1 : numOfRulesMet
+
+  numOfRulesMet = hasRequiredLength(password) ? numOfRulesMet + 1 : numOfRulesMet
+  numOfRulesMet = hasUppercaseAndLowercase(password) ? numOfRulesMet + 1 : numOfRulesMet
   return numOfRulesMet;
 }
 
-function isRequiredLength(password) {
+function hasRequiredLength(password) {
   const requiredLength = 8
-  if (!password) return false
   return password.length >= requiredLength
 }
 
+function hasUppercaseAndLowercase(password) {
+  const hasUppercase = /[A-Z]/.test(password)
+  const hasLowercase = /[a-z]/.test(password)
+  return hasUppercase && hasLowercase
+}
 
-
-console.log(checkStrength('12345678'))
+console.log(checkStrength('DarrickF'))
